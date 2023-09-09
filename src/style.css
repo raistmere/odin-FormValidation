@@ -1,0 +1,71 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+body
+{
+    /* General properties */
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+
+    /* Flex properties */
+    display: flex;
+}
+
+.wrapper
+{
+    /* General properties */
+    width: 500px;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(214, 214, 214);
+
+    /* Flex properties */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.emailBox
+{
+    padding: 5px;
+}
+
+.errorBox
+{
+    top: 0;
+    left: 0;
+    padding: 5px;
+    background-color: rgb(250, 85, 85);
+
+    /* Border properties */
+    border-style: solid;
+    border-width: 1px;
+}
+
+/* Support CSS */
+.hidden
+{
+    display: none;
+}
+
+.valid
+{
+    /* Border properties */
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(0, 255, 0);
+}
+
+.invalid
+{
+    /* Border properties */
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(255, 0, 0);
+}

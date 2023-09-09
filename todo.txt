@@ -1,0 +1,18 @@
+// Current Tasks left: //
+
+
+
+
+
+
+// List of things I want to add to the project: //
+
+I will like to add a slide down effect on the error box message 
+for validation. If the input is not valid, the error box (that is
+underneath each input box) will have a slide down effect rather than
+a instant pop up effect. Maybe have it slide from behind the input box
+and drop down.
+
+Display an (x) next to the input field that has a validation error. 
+This only shows when the submit button is pressed for a secondary visual 
+feedback for the user.
