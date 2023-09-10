@@ -12,7 +12,7 @@ const confirmPasswordError = document.querySelector(".confirmPasswordError");
 const submitButton = document.querySelector(".submitButton");
 
 // RegExp variables
-const emailRegExp = /^([a-zA-Z\.-]+)(@[a-zA-Z-]+)(\.[a-zA-Z]{2,8})(\.[a-zA-Z]{2,8})?$/;
+const emailRegExp = /^([a-zA-Z1-9\.-]+)(@[a-zA-Z-]+)(\.[a-zA-Z]{2,8})(\.[a-zA-Z]{2,8})?$/;
 const zipCodeRegExpList = [
     {
         countryName: "USA",
@@ -165,36 +165,34 @@ passwordInput.addEventListener("change", function(e)
 
 // Confirm Password input validation check using event listener
 // Confirm Passwordinput validation represent index [4] in validationChecklist
-passwordInput.addEventListener("change", function(e)
+confirmPasswordInput.addEventListener("change", function(e)
 {
-    let isValid = passwordRegExp.test(passwordInput.value);
+    let isValid = (confirmPasswordInput.value === passwordInput.value);
 
     if(isValid)
     {
         // Update classes to reflect the validity.
-        passwordError.classList.add("hidden");
-        passwordInput.classList.remove("invalid");
-        passwordInput.classList.add("valid");
+        confirmPasswordError.classList.add("hidden");
+        confirmPasswordInput.classList.remove("invalid");
+        confirmPasswordInput.classList.add("valid");
 
-        // Because the input is valid, we want to set the validationChecklist[3] to true
-        validationChecklist[3] = 1; // 1 for true
+        // Because the input is valid, we want to set the validationChecklist[4] to true
+        validationChecklist[4] = 1; // 1 for true
     }
     else
     {
         // Update classes to reflect the validity
-        passwordError.classList.remove("hidden");
-        passwordInput.classList.remove("valid");
-        passwordInput.classList.add("invalid");
+        confirmPasswordError.classList.remove("hidden");
+        confirmPasswordInput.classList.remove("valid");
+        confirmPasswordInput.classList.add("invalid");
 
         // Set the error textContent to show what the error was.
-        passwordError.textContent = "Please enter valid password of 8+ length \n(a-zA-Z / 1-9 / !@#$%^&* Allowed)";
+        confirmPasswordError.textContent = "Passwords do not match. Please match password.";
 
-        // Because the input is invalid, we want to set the validationChecklist[3] to false
-        validationChecklist[3] = 0; // 0 for true
+        // Because the input is invalid, we want to set the validationChecklist[4] to false
+        validationChecklist[4] = 0; // 0 for true
     }
 });
-
-
 
 
 // This event listener handles what happens when the form is submit.
