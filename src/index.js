@@ -5,6 +5,10 @@ const countryInput = document.querySelector("#countryInput");
 const countryError = document.querySelector(".countryError");
 const zipCodeInput = document.querySelector("#zipCodeInput");
 const zipCodeError = document.querySelector(".zipCodeError");
+const passwordInput = document.querySelector("#passwordInput");
+const passwordError = document.querySelector(".passwordError");
+const confirmPasswordInput = document.querySelector("#confirmPasswordInput");
+const confirmPasswordError = document.querySelector(".confirmPasswordError");
 const submitButton = document.querySelector(".submitButton");
 
 // RegExp variables
@@ -23,10 +27,11 @@ const zipCodeRegExpList = [
         format: /^([a-zA-z]{1})([0-9]{1})([a-zA-Z]{1})([\t\n\r\s])([0-9]{1})([a-zA-Z]{1})([0-9]{1})$/
     },
 ];
+const passwordRegExp = /^([a-zA-Z1-9!@#$%^&*]{8,12})$/;
 
 
 //Variables
-const validationChecklist = [0, 0, 0];
+const validationChecklist = [0 /**Email */, 0 /**Country */, 0 /**Zip Code */, 0 /**Password */, 0 /**Confirm Password */];
 
 // Email input validation check using event listener
 // Email input validation represent index [0] in validationChecklist
@@ -72,7 +77,7 @@ countryInput.addEventListener("change", function(e)
         countryInput.classList.remove("invalid");
         countryInput.classList.add("valid");
 
-        // Because the input is valid, we want to set the validationChecklist[0] to true
+        // Because the input is valid, we want to set the validationChecklist[1] to true
         validationChecklist[1] = 1; // 1 for true
     }
     else
@@ -85,7 +90,7 @@ countryInput.addEventListener("change", function(e)
         // Set the error textContent to show what the error was.
         countryError.textContent = "Please select a country";
 
-        // Because the input is invalid, we want to set the validationChecklist[0] to false
+        // Because the input is invalid, we want to set the validationChecklist[1] to false
         validationChecklist[1] = 0; // 0 for true
     }
 
@@ -101,7 +106,7 @@ zipCodeInput.addEventListener("change", function(e)
     let country = zipCodeRegExpList.find((element) => element.countryName === countryInput.value);
     console.log(country);
     let isValid = country.format.test(zipCodeInput.value);
-    
+
     if(isValid)
     {
         // Update classes to reflect the validity.
@@ -109,7 +114,7 @@ zipCodeInput.addEventListener("change", function(e)
         zipCodeInput.classList.remove("invalid");
         zipCodeInput.classList.add("valid");
 
-        // Because the input is valid, we want to set the validationChecklist[0] to true
+        // Because the input is valid, we want to set the validationChecklist[2] to true
         validationChecklist[2] = 1; // 1 for true
     }
     else
@@ -122,10 +127,74 @@ zipCodeInput.addEventListener("change", function(e)
         // Set the error textContent to show what the error was.
         zipCodeError.textContent = `Please enter a valid ${countryInput.value} Zip Code`;
 
-        // Because the input is invalid, we want to set the validationChecklist[0] to false
+        // Because the input is invalid, we want to set the validationChecklist[2] to false
         validationChecklist[2] = 0; // 0 for true
     }
 });
+
+// Password input validation check using event listener
+// Password input validation represent index [3] in validationChecklist
+passwordInput.addEventListener("change", function(e)
+{
+    let isValid = passwordRegExp.test(passwordInput.value);
+
+    if(isValid)
+    {
+        // Update classes to reflect the validity.
+        passwordError.classList.add("hidden");
+        passwordInput.classList.remove("invalid");
+        passwordInput.classList.add("valid");
+
+        // Because the input is valid, we want to set the validationChecklist[3] to true
+        validationChecklist[3] = 1; // 1 for true
+    }
+    else
+    {
+        // Update classes to reflect the validity
+        passwordError.classList.remove("hidden");
+        passwordInput.classList.remove("valid");
+        passwordInput.classList.add("invalid");
+
+        // Set the error textContent to show what the error was.
+        passwordError.textContent = "Please enter valid password of 8+ length \n(a-zA-Z / 1-9 / !@#$%^&* Allowed)";
+
+        // Because the input is invalid, we want to set the validationChecklist[3] to false
+        validationChecklist[3] = 0; // 0 for true
+    }
+});
+
+// Confirm Password input validation check using event listener
+// Confirm Passwordinput validation represent index [4] in validationChecklist
+passwordInput.addEventListener("change", function(e)
+{
+    let isValid = passwordRegExp.test(passwordInput.value);
+
+    if(isValid)
+    {
+        // Update classes to reflect the validity.
+        passwordError.classList.add("hidden");
+        passwordInput.classList.remove("invalid");
+        passwordInput.classList.add("valid");
+
+        // Because the input is valid, we want to set the validationChecklist[3] to true
+        validationChecklist[3] = 1; // 1 for true
+    }
+    else
+    {
+        // Update classes to reflect the validity
+        passwordError.classList.remove("hidden");
+        passwordInput.classList.remove("valid");
+        passwordInput.classList.add("invalid");
+
+        // Set the error textContent to show what the error was.
+        passwordError.textContent = "Please enter valid password of 8+ length \n(a-zA-Z / 1-9 / !@#$%^&* Allowed)";
+
+        // Because the input is invalid, we want to set the validationChecklist[3] to false
+        validationChecklist[3] = 0; // 0 for true
+    }
+});
+
+
 
 
 // This event listener handles what happens when the form is submit.

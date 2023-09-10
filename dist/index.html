@@ -11,7 +11,7 @@
     </head>
 
     <body>
-        <form>
+        <form autocomplete="off" novalidate>
             <div class="wrapper">
                 <!-- Form Header -->
                 <h1>Please fill out form:</h1>
@@ -24,7 +24,7 @@
                 <!-- Country input -->
                 <div class="countryBox">
                     <label for="countryInput">Country:</label>
-                    <select id="countryInput" name="country">
+                    <select id="countryInput" name="country" autocomplete="off">
                         <option value=""></option>
                         <option value="USA">USA</option>
                         <option value="Mexico">Mexico</option>
@@ -33,22 +33,22 @@
                     <div class="errorBox countryError hidden"></div>
                 </div>
                 <!-- Zip Code input -->
-                <div class="emailBox">
+                <div class="zipCodeBox">
                     <label for="zipCodeInput">Zip Code:</label>
                     <input type="text" id="zipCodeInput">
                     <div class="errorBox zipCodeError hidden"></div>
                 </div>
                 <!-- Password input -->
-                <div class="emailBox">
-                    <label for="zipCodeInput">Password:</label>
-                    <input type="text" id="zipCodeInput">
-                    <div class="errorBox zipCodeError hidden"></div>
+                <div class="passwordBox">
+                    <label for="passwordInput">Password:</label>
+                    <input type="password" id="passwordInput">
+                    <div class="errorBox passwordError hidden"></div>
                 </div>
-                <!-- Password Confirmation input -->
-                <div class="emailBox">
-                    <label for="zipCodeInput">Confirm Password:</label>
-                    <input type="text" id="zipCodeInput">
-                    <div class="errorBox zipCodeError hidden"></div>
+                <!-- confirm Password input -->
+                <div class="confirmPasswordBox">
+                    <label for="confirmPasswordInput">Confirm Password:</label>
+                    <input type="password" id="confirmPasswordInput">
+                    <div class="errorBox confirmPasswordError hidden"></div>
                 </div>
                 <button type="submit" class="submitButton">Submit</button>
             </div>
