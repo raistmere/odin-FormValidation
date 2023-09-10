@@ -104,31 +104,36 @@ countryInput.addEventListener("change", function(e)
 zipCodeInput.addEventListener("change", function(e)
 {
     let country = zipCodeRegExpList.find((element) => element.countryName === countryInput.value);
-    console.log(country);
-    let isValid = country.format.test(zipCodeInput.value);
 
-    if(isValid)
+    // We want to make sure that the country exists. 
+    // This helps prevent errors or undefined issues if a country is not selected.
+    if(country)
     {
-        // Update classes to reflect the validity.
-        zipCodeError.classList.add("hidden");
-        zipCodeInput.classList.remove("invalid");
-        zipCodeInput.classList.add("valid");
-
-        // Because the input is valid, we want to set the validationChecklist[2] to true
-        validationChecklist[2] = 1; // 1 for true
-    }
-    else
-    {
-        // Update classes to reflect the validity
-        zipCodeError.classList.remove("hidden");
-        zipCodeInput.classList.remove("valid");
-        zipCodeInput.classList.add("invalid");
-
-        // Set the error textContent to show what the error was.
-        zipCodeError.textContent = `Please enter a valid ${countryInput.value} Zip Code`;
-
-        // Because the input is invalid, we want to set the validationChecklist[2] to false
-        validationChecklist[2] = 0; // 0 for true
+        let isValid = country.format.test(zipCodeInput.value);
+    
+        if(isValid)
+        {
+            // Update classes to reflect the validity.
+            zipCodeError.classList.add("hidden");
+            zipCodeInput.classList.remove("invalid");
+            zipCodeInput.classList.add("valid");
+    
+            // Because the input is valid, we want to set the validationChecklist[2] to true
+            validationChecklist[2] = 1; // 1 for true
+        }
+        else
+        {
+            // Update classes to reflect the validity
+            zipCodeError.classList.remove("hidden");
+            zipCodeInput.classList.remove("valid");
+            zipCodeInput.classList.add("invalid");
+    
+            // Set the error textContent to show what the error was.
+            zipCodeError.textContent = `Please enter a valid ${countryInput.value} Zip Code`;
+    
+            // Because the input is invalid, we want to set the validationChecklist[2] to false
+            validationChecklist[2] = 0; // 0 for true
+        }
     }
 });
 
@@ -208,7 +213,15 @@ submitButton.addEventListener("click", function(e)
         if(element === 0) isFormValid = false;
     });
 
-    console.log(`Is the form valid? ${isFormValid}`);
+    // Display an alert based on if the form is valid/invalid.
+    if(isFormValid)
+    {
+        alert("THUMBS UP! Your form is valid.");
+    }
+    else
+    {
+        alert("Your form is invalid. Please fix the errors and resubmit.");
+    }
 
     return false;
 });

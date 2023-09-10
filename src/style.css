@@ -30,19 +30,79 @@ body
     /* Flex properties */
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
+
+    /* Border properties */
+    border-style: solid;
+    border-radius: 25px;
+    border-width: 2px;
+    border-color: rgb(104, 104, 104);
+}
+
+.wrapper h1
+{
+    /* General properties */
+    align-self: center;
+
+    /* Border properties */
+    border-bottom-style: solid;
+    border-color: rgb(104, 104, 104);
+}
+
+label
+{
+    /* Border properties */
+    border-bottom-style: solid;
+    border-width: 1px;
+    border-color: rgb(104, 104, 104);
+}
+
+input, select
+{
+    /* Border properties */
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
 }
 
 .errorBox
 {
-    top: 0;
-    left: 0;
+    /* General properties */
     padding: 5px;
     background-color: rgb(250, 85, 85);
+
+    /* Text properties */
+    color: black;
 
     /* Border properties */
     border-style: solid;
     border-width: 1px;
+    border-radius: 5px;
+    border-color: black;
+}
+
+.submitButton
+{
+    /* General properties */
+    padding: 5px;
+    background-color: white;
+
+    /* Text properties */
+    text-align: center;
+    font-size: large;
+    color: black;
+
+    /* Border properties */
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: rgb(104, 104, 104);
+}
+
+.submitButton:hover
+{
+    /* General properties */
+    background-color: rgb(228, 228, 228);
 }
 
 /* Support CSS */
@@ -56,7 +116,7 @@ body
     /* Border properties */
     border-style: solid;
     border-width: 2px;
-    border-color: rgb(0, 255, 0);
+    border-color: rgb(116, 240, 116);
 }
 
 .invalid
