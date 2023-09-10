@@ -1,15 +1,32 @@
 // DOM References
-const emailBox = document.querySelector(".emailBox");
 const emailInput = document.querySelector("#emailInput");
 const emailError = document.querySelector(".emailError");
+const countryInput = document.querySelector("#countryInput");
+const countryError = document.querySelector(".countryError");
+const zipCodeInput = document.querySelector("#zipCodeInput");
+const zipCodeError = document.querySelector(".zipCodeError");
 const submitButton = document.querySelector(".submitButton");
 
 // RegExp variables
 const emailRegExp = /^([a-zA-Z\.-]+)(@[a-zA-Z-]+)(\.[a-zA-Z]{2,8})(\.[a-zA-Z]{2,8})?$/;
+const zipCodeRegExpList = [
+    {
+        countryName: "USA",
+        format: /^([0-9]{5})$/
+    },
+    {
+        countryName: "Mexico",
+        format: /^([0-9]{5})$/
+    },
+    {
+        countryName: "Canada",
+        format: /^([a-zA-z]{1})([0-9]{1})([a-zA-Z]{1})([\t\n\r\s])([0-9]{1})([a-zA-Z]{1})([0-9]{1})$/
+    },
+];
 
 
 //Variables
-const validationChecklist = [0];
+const validationChecklist = [0, 0, 0];
 
 // Email input validation check using event listener
 // Email input validation represent index [0] in validationChecklist
@@ -42,6 +59,74 @@ emailInput.addEventListener("change", function(e)
     }
 });
 
+// Country input validation check using event listener
+// Country input validation represent index [1] in validationChecklist
+countryInput.addEventListener("change", function(e)
+{
+    let isValid = countryInput.selectedIndex === 0? false : true;
+
+    if(isValid)
+    {
+        // Update classes to reflect the validity.
+        countryError.classList.add("hidden");
+        countryInput.classList.remove("invalid");
+        countryInput.classList.add("valid");
+
+        // Because the input is valid, we want to set the validationChecklist[0] to true
+        validationChecklist[1] = 1; // 1 for true
+    }
+    else
+    {
+        // Update classes to reflect the validity
+        countryError.classList.remove("hidden");
+        countryInput.classList.remove("valid");
+        countryInput.classList.add("invalid");
+
+        // Set the error textContent to show what the error was.
+        countryError.textContent = "Please select a country";
+
+        // Because the input is invalid, we want to set the validationChecklist[0] to false
+        validationChecklist[1] = 0; // 0 for true
+    }
+
+    // This allows us to refresh the zip code input to notify the user if there is an error
+    // when the country changes.
+    zipCodeInput.dispatchEvent(new Event("change"));
+});
+
+// Zip Code input validation check using event listener
+// Zip Code input validation represent index [2] in validationChecklist
+zipCodeInput.addEventListener("change", function(e)
+{
+    let country = zipCodeRegExpList.find((element) => element.countryName === countryInput.value);
+    console.log(country);
+    let isValid = country.format.test(zipCodeInput.value);
+    
+    if(isValid)
+    {
+        // Update classes to reflect the validity.
+        zipCodeError.classList.add("hidden");
+        zipCodeInput.classList.remove("invalid");
+        zipCodeInput.classList.add("valid");
+
+        // Because the input is valid, we want to set the validationChecklist[0] to true
+        validationChecklist[2] = 1; // 1 for true
+    }
+    else
+    {
+        // Update classes to reflect the validity
+        zipCodeError.classList.remove("hidden");
+        zipCodeInput.classList.remove("valid");
+        zipCodeInput.classList.add("invalid");
+
+        // Set the error textContent to show what the error was.
+        zipCodeError.textContent = `Please enter a valid ${countryInput.value} Zip Code`;
+
+        // Because the input is invalid, we want to set the validationChecklist[0] to false
+        validationChecklist[2] = 0; // 0 for true
+    }
+});
+
 
 // This event listener handles what happens when the form is submit.
 // We want to make sure that input fields in the form are valid. If so, then thumbs up.
@@ -55,6 +140,8 @@ submitButton.addEventListener("click", function(e)
     validationChecklist.forEach(element => {
         if(element === 0) isFormValid = false;
     });
+
+    console.log(`Is the form valid? ${isFormValid}`);
 
     return false;
 });

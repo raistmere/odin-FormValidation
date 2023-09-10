@@ -13,11 +13,42 @@
     <body>
         <form>
             <div class="wrapper">
+                <!-- Form Header -->
                 <h1>Please fill out form:</h1>
+                <!-- Email input -->
                 <div class="emailBox">
                     <label for="emailInput">Email Address:</label>
                     <input type="text" id="emailInput">
                     <div class="errorBox emailError hidden"></div>
+                </div>
+                <!-- Country input -->
+                <div class="countryBox">
+                    <label for="countryInput">Country:</label>
+                    <select id="countryInput" name="country">
+                        <option value=""></option>
+                        <option value="USA">USA</option>
+                        <option value="Mexico">Mexico</option>
+                        <option value="Canada">Canada</option>
+                    </select>
+                    <div class="errorBox countryError hidden"></div>
+                </div>
+                <!-- Zip Code input -->
+                <div class="emailBox">
+                    <label for="zipCodeInput">Zip Code:</label>
+                    <input type="text" id="zipCodeInput">
+                    <div class="errorBox zipCodeError hidden"></div>
+                </div>
+                <!-- Password input -->
+                <div class="emailBox">
+                    <label for="zipCodeInput">Password:</label>
+                    <input type="text" id="zipCodeInput">
+                    <div class="errorBox zipCodeError hidden"></div>
+                </div>
+                <!-- Password Confirmation input -->
+                <div class="emailBox">
+                    <label for="zipCodeInput">Confirm Password:</label>
+                    <input type="text" id="zipCodeInput">
+                    <div class="errorBox zipCodeError hidden"></div>
                 </div>
                 <button type="submit" class="submitButton">Submit</button>
             </div>
